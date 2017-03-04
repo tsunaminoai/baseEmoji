@@ -39,13 +39,22 @@ def encode_emoji(e,spacing=''):
 def decode_emoji(d,spacing=''):
     r = 0L
     for v in list(gc.grapheme_clusters(d)):
-      e = []
       if v == spacing:
         continue
-      for i in range(len(v)):
-        e.append(format(ord(v[i]),'x').zfill(4).upper())
-      p = '-'.join(e)
-      r = (r<<10) + EMOJI.index(p)
+      decode_list = []
+      if len(v) >= 4:
+        i=0
+        while i < len(v):
+          decode_list.append(v[i:i+2])
+          i+=2
+      else:
+        decode_list.append(v)
+      for l in decode_list:
+        e = []
+        for i in range(len(l)):
+          e.append(format(ord(l[i]),'x').zfill(4).upper())
+        p = '-'.join(e)
+        r = (r<<10) + EMOJI.index(p)
     return r
 
 def encode_emoji_string(st,spacing=''):
