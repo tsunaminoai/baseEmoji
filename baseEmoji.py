@@ -61,5 +61,5 @@ def encode_emoji_string(st,spacing=''):
   return encode_emoji(s2b(st),spacing)
 
 def decode_emoji_string(d,spacing=''):
-  return b2s(decode_emoji(d))
+  return b2s(decode_emoji(d,spacing))
 
