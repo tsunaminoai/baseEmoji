@@ -11,6 +11,20 @@ def unichar(i):
   except ValueError:
     return struct.pack('i', i).decode('utf-32')
 
+def b2s(n):
+  s = []
+  while n > 0:
+   s.append( chr(n & 0xFF) )
+   n = n >> 8
+  return ''.join(reversed(s))
+
+
+def s2b(s):
+ r=0L
+ for c in s:
+  r = (r<<8) + ord(c)
+ return r
+
 def encode_emoji(e,spacing=''):
     a = []
     while (e > 0):
@@ -34,15 +48,20 @@ def decode_emoji(d,spacing=''):
       r = (r<<10) + EMOJI.index(p)
     return r
 
+def encode_emoji_string(st,spacing=''):
+  return encode_emoji(s2b(st),spacing)
 
+def decode_emoji_string(d,spacing=''):
+  return b2s(decode_emoji(d))
 
 test_int = 55812284154744246476039193196145952172539893391315043784985833979844630516437646362278696338348615542440300846801332508702033661460515063536770772416733295967508908382235636654474341949690870730323623932007686028974152431493351241789591501868689325754582797161818878128054527128837461417111542928160195621495L
-#test_int = 2147483647L
-encode = encode_emoji(test_int,spacing=" ")
+test_int = 2147483647L
+test_data = "I'm a string"
+encode = encode_emoji_string(test_data,spacing=" ")
 print "%s\n\n" % encode
 
 decode = decode_emoji(encode,spacing=" ")
-print test_int, "\n", decode
+print test_data, "\n", decode
 #print decode
 #print test_int == decode
 
