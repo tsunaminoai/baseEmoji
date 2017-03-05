@@ -2,20 +2,26 @@
 
 baseEmoji is a base1024 encoding scheme that uses emoji as its lookup table. The primary purpose is to represent otherwise ugly data in more "pleasing" form in social media.
 
+## Installing ##
+
+baseEmoji can be easily installed with pip
+```
+pip install baseEmoji
+```
+
 ## What is it? ##
 baseEmoji is a representation of data in base1024 mapped into emoji. The main methods available are:
 
+
 ### Encoding / Decoding ###
-```
-#!python
+```python
 encString = baseEmoji.encode(messageLong, spacing='')
 messageLong = baseEmoji.decode(encString, spacing='')
 ```
 These methods are symmetrical operations. encode() takes message data in the form of a long and produces a string of emoji that represents the base1024 of that data. An optional spacing character can be specified that will be placed between each emoji. To decode, the same spacing character must be known.
 
 ### String Encoding / Decoding ###
-```
-#!python
+```python
 encString = baseEmoji.encodeStr(messageStr, spacing='')
 messageStr = baseEmoji.decodeStr(encString, spacing='')
 ```
@@ -29,8 +35,7 @@ The impetus for this module was to represent digital signatures in social media 
 
 #### "Practical" Example: Signing a Tweet ####
 **Signing**
-```
-#!python
+```python
 
 import sys
 import tweepy
@@ -73,8 +78,7 @@ t = api.update_status(tweet)
 ![Screenshot 2017-03-04 15.04.17.png](http://i.imgur.com/CXUnmQ9.png)
 
 **Verification**
-```
-#!python
+```python
 #...
 #get the verification key
 verifyKey = signKey.get_verifying_key()
