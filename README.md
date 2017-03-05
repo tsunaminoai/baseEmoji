@@ -93,3 +93,7 @@ assert verifyKey.verify(rsignature, rmessage)
 ```
 
 In the wild, it may be advantageous to use a smaller digital signature algorithm and to also check that the length of the message plus the delimiter and signature don't go beyond 140 characters. While the signature itself can be a fixed size of bytes, because some emoji require more than one code point, the emoji signature could be a few characters longer according to Twitter's counting.
+
+## Credits ##
+
+Emoji list initially sourced from https://github.com/iamcal/emoji-data commit 6c6cb1481c7d1ee3529614e5fbe1434d65bfe701
