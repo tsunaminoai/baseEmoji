@@ -25,7 +25,7 @@ def s2b(s):
   r = (r<<8) + ord(c)
  return r
 
-def encode_emoji(e,spacing=''):
+def encode(e,spacing=''):
     a = []
     while (e > 0):
       emoji = ''
@@ -36,7 +36,7 @@ def encode_emoji(e,spacing=''):
       e = e>>10
     return spacing.join(reversed(a))
 
-def decode_emoji(d,spacing=''):
+def decode(d,spacing=''):
     r = 0L
     for v in list(gc.grapheme_clusters(d)):
       if v == spacing:
@@ -57,9 +57,9 @@ def decode_emoji(d,spacing=''):
         r = (r<<10) + EMOJI.index(p)
     return r
 
-def encode_emoji_string(st,spacing=''):
-  return encode_emoji(s2b(st),spacing)
+def encodeStr(st,spacing=''):
+  return encode(s2b(st),spacing)
 
-def decode_emoji_string(d,spacing=''):
-  return b2s(decode_emoji(d,spacing))
+def decodeStr(d,spacing=''):
+  return b2s(decode(d,spacing))
 

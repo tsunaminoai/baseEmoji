@@ -8,18 +8,18 @@ baseEmoji is a representation of data in base1024 mapped into emoji. The main me
 ### Encoding / Decoding ###
 ```
 #!python
-encString = encode_emoji(messageLong, spacing='')
-messageLong = decode_emoji(encString, spacing='')
+encString = baseEmoji.encode(messageLong, spacing='')
+messageLong = baseEmoji.decode(encString, spacing='')
 ```
-These methods are symmetrical operations. encode_emoji() takes message data in the form of a long and produces a string of emoji that represents the base1024 of that data. An optional spacing character can be specified that will be placed between each emoji. To decode, the same spacing character must be known.
+These methods are symmetrical operations. encode() takes message data in the form of a long and produces a string of emoji that represents the base1024 of that data. An optional spacing character can be specified that will be placed between each emoji. To decode, the same spacing character must be known.
 
 ### String Encoding / Decoding ###
 ```
 #!python
-encString = encode_emoji_string(messageStr, spacing='')
-messageStr = decode_emoji_string(encString, spacing='')
+encString = baseEmoji.encodeStr(messageStr, spacing='')
+messageStr = baseEmoji.decodeStr(encString, spacing='')
 ```
-These methods are symmetrical operations. encode_emoji() takes message data in the form of a string, converts it to a long internally, and produces a string of emoji that represents the base1024 of that data. An optional spacing character can be specified that will be placed between each emoji. To decode, the same spacing character must be known.
+These methods are symmetrical operations. encodeStr() takes message data in the form of a string, converts it to a long internally, and produces a string of emoji that represents the base1024 of that data. An optional spacing character can be specified that will be placed between each emoji. To decode, the same spacing character must be known.
 
 
 
@@ -57,7 +57,7 @@ message = "This tweet is signed"
 signature = signKey.sign(message)
 
 #convert the signature into an emoji signature
-emSig = baseEmoji.encode_emoji_string(signature," ")
+emSig = baseEmoji.encodeStr(signature," ")
 
 #create the tweet with a delimiter for later parsing
 tweet = message + " #blessed " + emSig
@@ -86,7 +86,7 @@ v = api.get_status(t.id)
 (rmessage,remSig) = v.text.split(" #blessed ",1)
 
 #convert the emoji signature back to its original form
-rsignature = baseEmoji.decode_emoji_string(remSig," ")
+rsignature = baseEmoji.decodeStr(remSig," ")
 
 #verify that the signature is valid for the message
 assert verifyKey.verify(rsignature, rmessage)
