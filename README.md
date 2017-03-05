@@ -70,7 +70,7 @@ t = api.update_status(tweet)
 
 **Tweet**
 
-![Screenshot 2017-03-04 15.04.17.png](https://bitbucket.org/repo/rxLy6y/images/802293399-Screenshot%202017-03-04%2015.04.17.png)
+![Screenshot 2017-03-04 15.04.17.png](http://i.imgur.com/CXUnmQ9.png)
 
 **Verification**
 ```
