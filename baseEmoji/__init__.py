@@ -1,6 +1,6 @@
-import sys,os
-VERSION_TUPLE = tuple(open(os.path.join('./', 'VERSION')).read().strip().split('.'))
-VERSION = ".".join(map(str, VERSION_TUPLE))
+from pkg_resources import get_distribution
+
+__version__ = get_distribution('baseEmoji').version
 
 from .baseEmoji import encode
 from .baseEmoji import encodeStr

@@ -3,9 +3,10 @@ import json
 import struct
 from uniseg import graphemecluster as gc
 from uniseg import codepoint as cp
+from pkg_resources import get_distribution
 
-import sys, os
-VERSION=open(os.path.join('./', 'VERSION')).read().strip().split('.')
+__version__ = get_distribution('baseEmoji').version
+
 VERSION_EMOJI = [u'1F603']
 
 #the emoji mapping
@@ -68,12 +69,12 @@ def encode(e,spacing=''):
     #start an emoji character
     emoji = ''
     #for each code point located at the location in EMOJI given by the last 10 bits of the data
-    a.append( ''.join(cp.unichr(int(x,16)) for x in EMOJI[int(VERSION[0])][(e) & 0x3ff].split('-')) )
+    a.append( ''.join(cp.unichr(int(x,16)) for x in EMOJI[int(__version__[0])][(e) & 0x3ff].split('-')) )
     #shift the data right by 10 bits
     e = e>>10
 
   #append the version emoji
-  a.append(''.join(cp.unichr(int(x,16)) for x in VERSION_EMOJI[int(VERSION[0])].split('-')))
+  a.append(''.join(cp.unichr(int(x,16)) for x in VERSION_EMOJI[int(__version__[0])].split('-')))
   #return a reversed string joined by the specified spacing character
   return spacing.join(reversed(a))
 
