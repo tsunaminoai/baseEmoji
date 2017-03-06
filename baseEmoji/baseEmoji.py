@@ -64,11 +64,7 @@ def encode(e,spacing=''):
     #start an emoji character
     emoji = ''
     #for each code point located at the location in EMOJI given by the last 10 bits of the data
-    for x in EMOJI[(e) & 0x3ff].split('-'):
-      #the emoji is constructed by each code point
-      emoji += cp.unichr( int(x, 16) )
-    #append the constructed emoji onto the list
-    a.append( emoji )
+    a.append( ''.join(cp.unichr(int(x,16)) for x in EMOJI[(e) & 0x3ff].split('-')) )
     #shift the data right by 10 bits
     e = e>>10
   #return a reversed string joined by the specified spacing character
