@@ -1,4 +1,5 @@
-VERSION_TUPLE = (0, 0, 1)
+import sys,os
+VERSION_TUPLE = tuple(open(os.path.join('./', 'VERSION')).read().strip().split('.'))
 VERSION = ".".join(map(str, VERSION_TUPLE))
 
 from .baseEmoji import encode

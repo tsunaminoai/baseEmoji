@@ -1,9 +1,11 @@
-import sys
+import sys, os
 from setuptools import setup, find_packages
+
+version_file = open(os.path.join('./', 'VERSION'))
 
 setup(
     name="baseEmoji",
-    version="0.0.1",
+    version = version_file.read().strip(),
     description="A simple base1024 encoder that outputs emoji.",
     long_description='baseEmoji is a base1024 encoding scheme that uses emoji as its lookup table. The primary purpose is to represent otherwise ugly data in more "pleasing" form in social media.',
     classifiers=[
