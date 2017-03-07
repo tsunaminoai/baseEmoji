@@ -1,4 +1,5 @@
 #!/bin/env python
+import sys
 import json
 import struct
 from uniseg import graphemecluster as gc
@@ -44,7 +45,7 @@ def s2b(s):
       A long of binary data
   """
   #start a binary long
-  r=0L
+  r=0
   #for each character in the string
   for c in s:
     #left shift the data by 8 bits and add the integer representation of the character
@@ -89,7 +90,7 @@ def decode(d,spacing=''):
       Binary data as a long
   """
   #start the return data
-  r = 0L
+  r = 0
   decode_version = None
   i=0
   #for each cluster of unicode data found in the string
@@ -98,11 +99,15 @@ def decode(d,spacing=''):
     if v == spacing:
       continue
 
-
+    #Block sizes of unicode change between py2 and 3
+    if (sys.version_info > (3, 0)):
+      block_size = 2
+    else:
+      block_size = 4
     #for 4 bytes in the cluster (2 emoji or less)
-    for dcode in [v[k:k+4] for k in range(0, len(v), 4)]:
+    for dcode in [v[k:k+block_size] for k in range(0, len(v), block_size)]:
       #join mutliple codepoints together (2 bytes each)
-      p = '-'.join(format(cp.ord(x), 'x').zfill(4).upper() for x in [dcode[l:l+2] for l in range(0, len(dcode), 2)])
+      p = '-'.join(format(cp.ord(x), 'x').zfill(4).upper() for x in [dcode[l:l+(block_size//2)] for l in range(0, len(dcode), block_size//2)])
 
       #get the first emoji as the version number
       if i == 0:
