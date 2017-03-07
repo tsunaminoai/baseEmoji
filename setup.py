@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="baseEmoji",
-    version = '0.0.4',
+    version = '0.1.0',
     description="A simple base1024 encoder that outputs emoji.",
     long_description='baseEmoji is a base1024 encoding scheme that uses emoji as its lookup table. The primary purpose is to represent otherwise ugly data in more "pleasing" form in social media.',
     classifiers=[
