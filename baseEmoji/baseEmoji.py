@@ -2,6 +2,7 @@
 import sys
 import json
 import struct
+import platform
 from uniseg import graphemecluster as gc
 from uniseg import codepoint as cp
 from pkg_resources import get_distribution
@@ -100,7 +101,7 @@ def decode(d,spacing=''):
       continue
 
     #Block sizes of unicode change between py2 and 3
-    if (sys.version_info > (3, 0)):
+    if (sys.version_info > (3, 0)) or platform.system() == 'Linux':
       block_size = 2
     else:
       block_size = 4
