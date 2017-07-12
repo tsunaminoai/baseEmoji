@@ -1,6 +1,6 @@
 # baseEmoji #
 
-[![Build Status](https://rin.falseblue.com/buildStatus/icon?job=baseEmoji)](https://rin.falseblue.com/job/baseEmoji/)
+[![Build Status](https://rin.falseblue.com/buildStatus/icon?job=baseEmoji)](https://rin.falseblue.com/job/baseEmoji/) [![Build Status](https://travis-ci.org/tsunaminoai/baseEmoji.svg?branch=master)](https://travis-ci.org/tsunaminoai/baseEmoji)
 
 baseEmoji is a base1024 encoding scheme that uses emoji as its lookup table. The primary purpose is to represent otherwise ugly data in more "pleasing" form in social media.
 
